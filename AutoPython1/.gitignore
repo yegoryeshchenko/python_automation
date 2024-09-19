@@ -1,0 +1,23 @@
+# Component testing.
+allure-results
+
+# Frontend development.
+.vscode
+dist
+node
+node_modules
+npm-debug.log*
+*.log
+
+# Java development.
+.classpath
+.factorypath
+**/.idea/*
+!**/.idea/icon.png
+!**/.idea/icon.svg
+.java-version
+.project
+.run
+.settings
+target
+*.iml
