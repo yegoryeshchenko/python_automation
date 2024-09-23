@@ -1,0 +1,45 @@
+# Component testing.
+allure-results
+
+.pnpm-debug.log*
+.vscode
+dist
+lerna-debug.log*
+node
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.code-workspace
+*.log
+**/.npmrc
+**/webapp/coverage
+**/webapp/mock-server/**/*.js
+**/webapp/mock-server/**/*.js.map
+
+# General development.
+.DS_Store
+*.swp
+
+# Java development.
+.attach_pid*
+application.pid
+.classpath
+.factorypath
+**/.idea/*
+!**/.idea/icon.png
+!**/.idea/icon.svg
+.java-version
+.project
+.run
+.settings
+target
+*.iml
+
+# Python development.
+.pydevproject
+__pycache__
+venv
+*.pyc
+*.pyo
+
