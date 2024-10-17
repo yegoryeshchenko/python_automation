@@ -10,10 +10,8 @@ class TestLogging(unittest.TestCase):
         logger.warning("This is a warning message")
         logger.critical("This is a critical message")
 
-        with self.assertLogs(logger=logger, level='WARNING'): # debug -> info -> warning -> error -> critical
+        with self.assertLogs(logger=logger, level='WARNING'):  # debug -> info -> warning -> error -> critical
             logger.warning("This is a warning message")
-
-
 
 
 if __name__ == '__main__':
