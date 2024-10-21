@@ -35,6 +35,7 @@ application.pid
 .settings
 target
 *.iml
+**/myenv/*
 
 # Python development.
 .pydevproject
