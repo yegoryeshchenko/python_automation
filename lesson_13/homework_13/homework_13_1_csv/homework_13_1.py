@@ -8,6 +8,8 @@ from lesson_13.homework_13.homework_13_1_csv.custom_exception import HeaderIsNot
 
 RANDOM_CSV_FILE = 'random.csv'
 RANDOM_MICHAELS_CSV_FILE = 'random-michaels.csv'
+
+
 # get all rows from csv except header
 def get_list_of_rows_from_csv(csv_file_path):
     with open(csv_file_path, 'r', newline='') as csv_reader:
@@ -21,31 +23,35 @@ def get_header_from_file(csv_file_path):
     with open(csv_file_path, 'r', newline='') as csv_reader:
         reader = list(csv.reader(csv_reader))
 
-        return reader[0]
+        return tuple(reader[0])
 
 
 list_1 = get_list_of_rows_from_csv(RANDOM_CSV_FILE)
 list_2 = get_list_of_rows_from_csv(RANDOM_MICHAELS_CSV_FILE)
-header_1 = get_header_from_file(RANDOM_CSV_FILE)
-header_2 = get_header_from_file(RANDOM_MICHAELS_CSV_FILE)
 
 
-# get commone header, of they are not same, raise an exception
-def get_common_header() -> str:
+# get common header, of they are not same, raise an exception
+def get_common_header(h_1, h_2) -> str:
     # check if header is same in both files
-    if header_1 == header_1:
-        return header_1
+    if h_1 == h_2:
+        return h_1
     else:
         raise HeaderIsNotValidException('Header is not valid!')
 
 
 # get unique rows
 def get_unique_rows(lst_1, lst_2) -> set:
-    common_header = get_common_header()
+    common_header = get_common_header(get_header_from_file(RANDOM_CSV_FILE),
+                                      get_header_from_file(RANDOM_MICHAELS_CSV_FILE))
 
-    lst_1.insert(0, common_header)
-    lst_1.extend([item for item in lst_2 if item not in lst_1])
-    return list_1
+    data1 = tuple(tuple(sublist) for sublist in lst_1)
+    data2 = tuple(tuple(sublist) for sublist in lst_2)
+
+    final_data = set(data1) | set(data2)
+    final_data_list = list(final_data)
+    final_data_list.insert(0, common_header)
+
+    return final_data_list
 
 
 # write to a result csv
