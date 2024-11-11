@@ -12,8 +12,8 @@
 
 class Rhombus:
     def __init__(self, side, angle_a):
-        self.__setattr__('side', side)
-        self.__setattr__('angle_a', angle_a)
+        self.side = side
+        self.angle_a = angle_a
 
     def __setattr__(self, key, value):
         if key == 'side':
@@ -28,7 +28,10 @@ class Rhombus:
             super().__setattr__('angle_b', 180 - value)
 
         elif key == 'angle_b':
+            if not (0 < value < 180):
+                raise ValueError("Angle should be from 0 to 180 degrees")
             super().__setattr__(key, value)
+            super().__setattr__('angle_a', 180 - value)
 
     # <why {self.side} and {self.angle_b} are underlined ? tried for __str__ - the same>
     # we use __repr__ here to show the attributes along with their values in output
@@ -38,7 +41,7 @@ class Rhombus:
 
 # valid rhombus
 try:
-    rhombus1 = Rhombus(side=5, angle_a=60)
+    rhombus1 = Rhombus(side=5, angle_a=50)
     print(rhombus1)
 except ValueError as e:
     print(e)
@@ -70,3 +73,10 @@ try:
     print(rhombus5)
 except ValueError as e:
     print(e)
+
+print('-' * 80)
+x = Rhombus(2, 50)
+print(x)
+
+x.angle_b = 50
+print(x)
