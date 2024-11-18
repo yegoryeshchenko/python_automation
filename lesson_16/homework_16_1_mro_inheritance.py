@@ -43,10 +43,9 @@ class TeamLead(Manager, Developer):
         self.programming_language = programming_language
         self.team_size = team_size
 
-
-def __str__(self):
-    return f'TeamLead - name {self.name}, salary: {self.salary}, department: {self.department}, ' \
-           f'programming_language: {self.programming_language}, team_size: {self.team_size}'
+    def __str__(self):
+        return f'TeamLead - name {self.name}, salary: {self.salary}, department: {self.department}, ' \
+               f'programming_language: {self.programming_language}, team_size: {self.team_size}'
 
 
 manager = Manager('Petro', '1550', 'Ecommerce')
