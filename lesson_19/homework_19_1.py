@@ -38,11 +38,24 @@ def cleanup_after_test():
         print(f"Cleaned up: Removed '{image}'")
 
 
-@pytest.mark.parametrize("img_url, image_name", [
-    (get_img_urls()[0], 'mars_photo1.jpg'),
-    (get_img_urls()[1], 'mars_photo2.jpg')
-])
-def test_download_file(img_url, image_name):
+def get_image_name():
+    while True:
+        k = 1
+        yield f'mars_photo{k}.jpg'
+        k += 1
+
+
+# my version
+# @pytest.mark.parametrize("img_url, image_name", [
+#     (get_img_urls()[0], 'mars_photo1.jpg'),
+#     (get_img_urls()[1], 'mars_photo2.jpg')
+# ])
+
+# version by Denis
+@pytest.mark.parametrize("img_url",
+                         [*get_img_urls()])
+def test_download_file(img_url):
+    image_name = next(get_image_name())
     download_img_by_url(img_url, image_name)
 
     assert os.path.exists(image_name), f"'{image_name}' was not downloaded"
