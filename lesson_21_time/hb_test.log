@@ -1,0 +1,30 @@
+2024-12-06 23:27:32,896 - root - ERROR - ERROR: Heartbeat time difference exceeded threshold:
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 04:50:42 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 04:51:17 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+Time difference: 35 seconds
+Happened at: 04:51:17
+
+2024-12-06 23:27:32,897 - root - ERROR - ERROR: Heartbeat time difference exceeded threshold:
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 03:38:36 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 03:39:11 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+Time difference: 35 seconds
+Happened at: 03:39:11
+
+2024-12-06 23:27:32,899 - root - ERROR - ERROR: Heartbeat time difference exceeded threshold:
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 02:26:30 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 02:27:06 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+Time difference: 36 seconds
+Happened at: 02:27:06
+
+2024-12-06 23:27:32,900 - root - WARNING - WARNING: Pay attention to rows:
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:34:38 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:35:10 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+Time difference: 32 seconds
+Happened at: 01:35:10
+
+2024-12-06 23:27:32,900 - root - ERROR - ERROR: Heartbeat time difference exceeded threshold:
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:14:23 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+{ Trade (101, len 36) Queue 0 PriceClass 1 Timestamp 01:14:58 Key TSTFEED0300|7E3E|0400 TradePrice 5 TradeSize 0 }
+Time difference: 35 seconds
+Happened at: 01:14:58
+
