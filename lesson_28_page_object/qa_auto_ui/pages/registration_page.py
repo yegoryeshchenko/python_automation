@@ -1,14 +1,14 @@
+import allure
+
+from lesson_28_page_object.qa_auto_ui.dtos.user_dto import UserDTO
 from lesson_28_page_object.qa_auto_ui.locators.registration_page_locators import RegistrationPageLocators
 from lesson_28_page_object.qa_auto_ui.pages.base_page import QAAutoBasePage
 from lesson_28_page_object.qa_auto_ui.pages.garage_page import GaragePage
-from lesson_28_page_object.qa_auto_ui.dtos.user_dto import UserDTO
-from settings import settings
 
 
 class RegistrationPage(QAAutoBasePage):
     def __init__(self, driver):
         super().__init__(driver=driver)
-        self.url = settings.QAAUTO_BASE_API_URL
         self.locators = RegistrationPageLocators()
 
     def open_page(self, url=None):
@@ -58,6 +58,7 @@ class RegistrationPage(QAAutoBasePage):
         self._register_button().click()
         return self
 
+    @allure.step("register new user")
     def register_user(self, user: UserDTO):
         self.set_first_name(user.first_name).set_last_name(user.last_name).set_signup_email(user.email).set_password(
             user.password).set_repeat_password(user.password)

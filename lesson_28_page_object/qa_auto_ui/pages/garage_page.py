@@ -1,12 +1,12 @@
+import allure
+
 from lesson_28_page_object.qa_auto_ui.locators.garage_page_locators import GaragePageLocators
 from lesson_28_page_object.qa_auto_ui.pages.base_page import QAAutoBasePage
-from settings import settings
 
 
 class GaragePage(QAAutoBasePage):
     def __init__(self, driver):
         super().__init__(driver=driver)
-        self.url = settings.QAAUTO_BASE_API_URL
         self.locators = GaragePageLocators()
 
     def open_page(self, url=None):
@@ -23,5 +23,6 @@ class GaragePage(QAAutoBasePage):
     def _profile_name(self):
         return self._present_element(self.locators.user_name)
 
+    @allure.step("profile ")
     def get_profile_name(self):
         return self._profile_name().text

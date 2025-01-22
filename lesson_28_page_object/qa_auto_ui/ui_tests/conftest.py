@@ -41,19 +41,16 @@ def main_page(driver):
 @pytest.fixture(scope='session')
 def login_page(driver):
     login_page = LoginPage(driver)
-    login_page.open_page()
     return login_page
 
 
 @pytest.fixture(scope='session')
 def registration_page(driver):
     registration_page = RegistrationPage(driver)
-    registration_page.open_page()
     return registration_page
 
 
 @pytest.fixture(scope='session')
 def garage_page(driver):
     garage_page = GaragePage(driver)
-    garage_page.open_page()
     return garage_page

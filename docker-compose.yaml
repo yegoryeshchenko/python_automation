@@ -25,4 +25,18 @@ services:
       DB_PASSWORD: test_password
     volumes:
       - .:/app
-    command: pytest lesson_30_dockerize/test_db_python_script.py
+      - allure-results:/app/allure-results
+    command: pytest . -m swapi --alluredir=/app/allure-results lesson_30_dockerize/test_db_python_script.py
+
+
+  allure:
+    image: frankescobar/allure-docker-service
+    ports:
+      - "8080:80"
+    volumes:
+      - allure-results:/allure-results
+    environment:
+      - ALLURE_VERSION=2.18.1
+
+volumes:
+  allure-results:
