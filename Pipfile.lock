@@ -1,0 +1,40 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "c33d1c7fa0ad301f23cfa296ab66cfe1a4352c400347391f8b9ec186665dc416"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.11"
+        },
+        "sources": [
+            {
+                "name": "pip_conf_index_global",
+                "url": "https://pypi.org/simple/",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "attrs": "==24.3.0",
+        "certifi": "==2024.12.14",
+        "faker": "==33.3.1",
+        "h11": "==0.14.0",
+        "idna": "==3.10",
+        "outcome": "==1.3.0.post0",
+        "pyhamcrest": "==2.1.0",
+        "pysocks": "==1.7.1",
+        "python-dateutil": "==2.9.0.post0",
+        "selenium": "==4.27.1",
+        "six": "==1.17.0",
+        "sniffio": "==1.3.1",
+        "sortedcontainers": "==2.4.0",
+        "trio": "==0.28.0",
+        "trio-websocket": "==0.11.1",
+        "typing-extensions": "==4.12.2",
+        "urllib3": "==2.3.0",
+        "websocket-client": "==1.8.0",
+        "wsproto": "==1.2.0"
+    },
+    "develop": {}
+}
