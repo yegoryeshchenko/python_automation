@@ -1,0 +1,5 @@
+# TODO - dynaconf is not set up
+
+[default]
+nova_poshta_url = 'https://tracking.novaposhta.ua'
+
