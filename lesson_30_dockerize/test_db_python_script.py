@@ -3,6 +3,7 @@ import time
 
 import psycopg2
 import pytest
+import allure
 
 
 @pytest.fixture(scope="module")
@@ -36,30 +37,34 @@ def setup_test_table(db_connection):
     cursor.close()
 
 
+@allure.feature('Database Insertions')
 def test_insert_data(db_connection, setup_test_table):
-    cursor = db_connection.cursor()
-    cursor.execute("""
-        INSERT INTO test_table (name, age) VALUES
-        ('Alice', 25),
-        ('Bob', 30);
-    """)
-    db_connection.commit()
-    cursor.close()
+    with allure.step("Insert data into test_table"):
+        cursor = db_connection.cursor()
+        cursor.execute("""
+            INSERT INTO test_table (name, age) VALUES
+            ('Alice', 25),
+            ('Bob', 30);
+        """)
+        db_connection.commit()
+        cursor.close()
 
 
+@allure.feature('Database Select and Query')
 def test_select_data(db_connection, setup_test_table):
-    cursor = db_connection.cursor()
+    with allure.step("Insert test data into test_table"):
+        cursor = db_connection.cursor()
+        cursor.execute("""
+            INSERT INTO test_table (name, age) VALUES
+            ('test_user_1', 23),
+            ('test_user_2', 76);
+        """)
+        db_connection.commit()
 
-    cursor.execute("""
-        INSERT INTO test_table (name, age) VALUES
-        ('test_user_1', 23),
-        ('test_user_2', 76);
-    """)
-    db_connection.commit()
-
-    cursor.execute("SELECT * FROM test_table;")
-    results = cursor.fetchall()
-    assert len(results) == 2
-    assert results[0][1] == 'test_user_1'
-    assert results[1][1] == 'test_user_2'
-    cursor.close()
+    with allure.step("Fetch and validate the inserted data"):
+        cursor.execute("SELECT * FROM test_table;")
+        results = cursor.fetchall()
+        assert len(results) == 2
+        assert results[0][1] == 'test_user_1'
+        assert results[1][1] == 'test_user_2'
+        cursor.close()
