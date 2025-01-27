@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'lesson_32_jenkins', url: 'https://github.com/yegoryeshchenko/python_automation.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                sh 'pytest lesson_28_page_object/qa_auto_ui/ui_tests/test_user_registration.py --alluredir=allure-results'
+            }
+        }
+        stage('Generate and Publish Report') {
+            steps {
+                sh 'allure generate allure-results -o allure-report --clean'
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
+            }
+        }
+    }
+    post {
+        always {
+            mail to: 'yehor@yehor.com',
+                 subject: "Jenkins Build - ${currentBuild.fullDisplayName}",
+                 body: "Build ${currentBuild.fullDisplayName} finished with status: ${currentBuild.currentResult}"
+        }
+    }
+}
