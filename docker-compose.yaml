@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  pg_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: test_user1
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: test_db
+    ports:
+      - "5433:5433"
+    command: postgres -c listen_addresses='*' -c port=5433
+
+  app:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    depends_on:
+      - pg_db
+    environment:
+      DB_HOST: pg_db
+      DB_PORT: 5433
+      DB_NAME: test_db
+      DB_USER: test_user1
+      DB_PASSWORD: test_password
+    volumes:
+      - .:/app
+      - allure-results:/app/allure-results
+    command: pytest . -m swapi --alluredir=/app/allure-results lesson_30_dockerize/test_db_python_script.py
+
+
+  allure:
+    image: frankescobar/allure-docker-service
+    ports:
+      - "8080:80"
+    volumes:
+      - allure-results:/allure-results
+    environment:
+      - ALLURE_VERSION=2.18.1
+
+volumes:
+  allure-results:
