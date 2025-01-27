@@ -1,5 +1,6 @@
 import os
 import time
+
 import psycopg2
 import pytest
 import allure
