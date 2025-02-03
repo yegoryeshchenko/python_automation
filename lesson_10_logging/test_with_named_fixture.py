@@ -2,10 +2,9 @@ import os
 import re
 from datetime import datetime
 
-
 import pytest
 
-from lesson_10_logging.homework_10 import log_event, main_log_file_name, timestamp_pattern
+from lesson_10_logging.homework_10 import my_log_event, main_log_file_name, timestamp_pattern
 
 
 def get_timestamp_by_pattern(pattern, line):
@@ -21,7 +20,7 @@ def get_timestamp_by_pattern(pattern, line):
 def test_log_event_with_timestamp(username, status, log_level):
     actual_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    log_event(username=username, status=status)
+    my_log_event(username=username, status=status)
     log_filename = main_log_file_name
 
     with open(log_filename, mode='r') as log_file:
@@ -50,7 +49,7 @@ def cleanup_log_file():
     ("Unexpected_User", "invalid", 'ERROR')
 ])
 def test_log_event__with_timestamp(username, status, log_level):
-    log_event(username=username, status=status)
+    my_log_event(username=username, status=status)
     log_filename = 'login_system.log'
 
     with open(log_filename, mode='r') as log_file:
