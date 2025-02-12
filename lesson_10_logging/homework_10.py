@@ -10,7 +10,7 @@ main_log_file_name = 'login_system.log'
 timestamp_pattern = r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}"
 
 
-def log_event(username: str, status: str):
+def my_log_event(username: str, status: str):
     """
     Логує подію входу в систему.
 
