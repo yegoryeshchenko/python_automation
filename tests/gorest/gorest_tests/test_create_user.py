@@ -5,6 +5,7 @@ import os
 import time  # time.time() - повертає поточний час в секундах
 
 import allure
+from dotenv import load_dotenv
 
 from settings import settings
 from tests.gorest.dto_user import UserSchema
@@ -63,6 +64,7 @@ def test_create_user_auth_problem():
 @pytest.mark.negative
 @pytest.mark.gorest
 def test_create_for_checking_user_email_at_prod():
+    load_dotenv()
     assert  settings.USER_EMAIL == 'test+prod@test.com'
     assert os.getenv('SECRET_PHRASE', None) == 'secret'
 
