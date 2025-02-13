@@ -28,11 +28,11 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     source venv/bin/activate
-                    pytest -m gorest --alluredir=allure-results'''
+                    pytest -m ${pytest_mark} --alluredir=allure-results'''
             }
         }
     }
-    
+
     post {
         always {
             allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
