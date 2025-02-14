@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'homework_32_jenkins_ci', url: 'https://github.com/yegoryeshchenko/python_automation.git'
+            }
+        }
+        stage('Install dependencies') {
+            steps {
+                sh '''apt-get update
+                    apt-get install -y python3 python3-dev
+                    apt install -y python3-pip
+                    rm -rf venv
+                    apt install -y python3.11-venv
+                    python3 -m venv venv'''
+            }
+        }
+        stage('Install environments') {
+            steps {
+                sh '''#!/bin/bash
+                    source venv/bin/activate
+                    pip install -r requirements.txt'''
+            }
+        }
+        stage('Run tests') {
+            steps {
+                sh '''#!/bin/bash
+                    source venv/bin/activate
+                    pytest -m ${pytest_mark} --alluredir=allure-results'''
+            }
+        }
+    }
+
+    post {
+        always {
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        }
+    }
+}
