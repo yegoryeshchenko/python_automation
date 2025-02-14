@@ -1,9 +1,11 @@
 import allure
+import pytest
 
 from lesson_28_page_object.qa_auto_ui.ui_assertions.ui_assertions import assert_that_field_contains_expected_string
 
 
 @allure.feature("register new user")
+@pytest.mark.ui_tests
 @allure.testcase("verify that newly registered user can login to the system")
 def test_user_registration(driver, test_user, main_page, login_page, registration_page, garage_page):
     user = test_user
