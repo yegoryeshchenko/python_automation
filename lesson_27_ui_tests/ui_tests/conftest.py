@@ -1,5 +1,8 @@
 import pytest
-from selenium.webdriver import Chrome, ChromeOptions
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from webdriver_manager.chrome import ChromeDriverManager
 
 from lesson_27_ui_tests.np_tracking.pages.np_tracking_page import NPTrackingPage
 
@@ -7,14 +10,17 @@ from lesson_27_ui_tests.np_tracking.pages.np_tracking_page import NPTrackingPage
 @pytest.fixture
 def driver():
     chrome_options = ChromeOptions()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")  # Run tests in headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    chrome_options.browser_version = "114"
-    driver = Chrome(options=chrome_options)
+    # Automatically install the correct ChromeDriver version
+    service = ChromeService(ChromeDriverManager().install())
+
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
     yield driver
-    driver.close()
+    driver.quit()
 
 
 @pytest.fixture

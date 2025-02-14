@@ -1,6 +1,10 @@
+import allure
+import pytest
 from hamcrest import assert_that
 
 
+# @allure.feature("Nova Poshta")
+# @pytest.mark.ui_tests
 def test_track_package(driver, np_tracking_page):
 
     np_tracking_page.open_page()
